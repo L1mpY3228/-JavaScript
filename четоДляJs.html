@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="четоДляJs.css">
+    <title>Js обучалка</title>
+</head>
+<header>
+    <button class="back"><a href="index.html">Назад в меню</a></button>
+</header>
+<body>
+    <div class="calculate">
+        <p class="resultat" id="resultat">ответ</p>
+        <table class="yr">
+            <tr>
+                <td class="oneChislo" ><button id="1"></button></td>
+                <td class="zna"><button id="znak"></button></td>
+                <td class="twoChislo" ><button id="2"></button></td>
+            </tr>
+
+        </table>
+        <table class="more">
+            
+            <tr>
+                <td colspan="2"><button class="clear" id="clear">C</button></td>
+                <td colspan="3"><button class="result" onclick="ravno()">=</button></td>
+            </tr>
+            <tr>
+                <td><button class="numbers" id="one">1</button></td>
+                <td><button class="numbers" id="two" >2</button></td>
+                <td><button class="numbers" id="three">3</button></td>
+                <td><button class="numbers" id="four">4</button></td>
+                <td><button class="numbers" id="five">5</button></td>
+            </tr>
+            <tr>
+                <td><button class="numbers" id="six">6</button></td>
+                <td><button class="numbers" id="seven">7</button></td>
+                <td><button class="numbers" id="eight">8</button></td>
+                <td><button class="numbers" id="nine">9</button></td>
+                <td><button class="numbers" id="zero">0</button></td>
+            </tr>
+            <tr>
+                <td><button class="plus" id="plus" onclick="znaki()">+</button></td>
+                <td><button class="minus" id="minus" onclick="znaki()">-</button></td>
+                <td><button class="mnoj" id="mnoj" onclick="znaki()">*</button></td>
+                <td><button class="del" id="del" onclick="znaki()">/</button></td>
+                <!-- <td><button class="point" id="point">.</button></td> -->
+            </tr>           
+        </table>
+        
+    </div>
+</body>
+</html>
+<script>
+    let pervoe = document.getElementById('1');
+    let vtoroe = document.getElementById('2');
+    let znak = document.getElementById('znak');
+    let numBut = document.querySelectorAll('.numbers');
+    let isFirstClick = true;
+    let result = document.getElementById('resultat');
+    let per = false;
+    let vtor = false;
+    
+        pervoe.addEventListener('click', () =>{
+            per = true;
+            vtor = false;
+            console.log('Нажата 1:', {per, vtor});
+            isFirstClick = true;
+        })
+        vtoroe.addEventListener('click', () =>{
+            vtor = true;
+            per = false;
+            console.log('Нажата 2:', {per, vtor});
+                        isFirstClick = true;
+
+        })
+    
+    
+        numBut.forEach(button => {
+            button.addEventListener('click', function() {
+                if (per === true){
+                    const num = this.textContent; 
+                    if (isFirstClick){
+                        pervoe.textContent = num;
+                        isFirstClick = false;
+                    }else{
+                        pervoe.textContent += num;
+                    }
+                }else if ( vtor == true){
+                    const num = this.textContent; 
+                    if (isFirstClick){
+                        vtoroe.textContent = num;
+                        isFirstClick = false;
+                    }else{
+                        vtoroe.textContent += num;
+                    }
+                }
+            });
+        });
+   
+        document.getElementById('clear').addEventListener('click', () =>{
+            pervoe.textContent = '';
+            vtoroe.textContent = '';
+            znak.textContent = '';
+        })
+    function znaki(){
+        document.getElementById('plus').addEventListener('click', () => {
+            document.getElementById('znak').innerHTML = '+';
+        })
+        document.getElementById('minus').addEventListener('click', () => {
+            document.getElementById('znak').innerHTML = '-';
+        })
+        document.getElementById('mnoj').addEventListener('click', () => {
+            document.getElementById('znak').innerHTML = '*';
+        })
+        document.getElementById('del').addEventListener('click', () => {
+            document.getElementById('znak').innerHTML = '/';
+        })
+    }
+
+function ravno() {
+        let a = Number(pervoe.textContent);
+        let b = Number(vtoroe.textContent);
+        let operator = znak.textContent.trim();
+
+        let res;
+
+        if (Number.isNaN(a) || Number.isNaN(b)) {
+            result.textContent = 'Введите оба числа';
+            return;
+        }
+
+        if (operator === '+') {
+            res = a + b;
+        } else if (operator === '-') {
+            res = a - b;
+        } else if (operator === '*') {
+            res = a * b;
+        } else if (operator === '/') {
+            if (b === 0) {
+                res = 'На 0 делить нельзя';
+            } else {
+                res = a / b;
+            }
+        } else {
+            res = 'Выберите знак';
+        }
+
+        result.textContent = res;
+    }
+    
+</script>
+    

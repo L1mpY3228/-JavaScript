@@ -1,0 +1,27 @@
+body{
+background-color: rgba(223, 229, 150, 1);
+background-image: linear-gradient(35deg, rgba(223, 229, 150, 1) 15%, rgba(189, 237, 188, 1) 25%, rgba(127, 185, 199, 1) 65%, rgba(230, 151, 234, 1) 94%);
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+}
+.Line{
+    height: 100px;
+    margin-bottom: 50px;
+}
+.row1, .row2, .row3, .row4{
+    background-color: rgb(189 178 78 / 72%);
+    margin: 0 10px 0 10px;
+    height: 150px;
+    width: 300px;
+    border: solid 10px rgb(159 116 219);
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 20px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}

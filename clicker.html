@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="clicker.css">
+    <title>кликер</title>
+</head>
+<body> 
+  <a href="index.html" class="back">в меню</a>
+  <div id="errorx1">недостаточно денег</div>
+  <div id="yspeshno">Успешная покупка</div>
+<p class="balance" id="money">0</p>
+    <img src="img/shop.png" class="OpenMenu" onclick="menu()"></img>
+
+    <img src="img/i-no-bg-preview (carve.photos) (1).png" class="pers"  alt="персонаж" onclick="plusMoney()">
+    <img src="img/petMem.png" class="petMem" alt="петомец" id="petMem">
+    <p class="xPet" id="xPet">x1</p>
+    <img src="img/dom.png" class="domMem" id="domMem">
+    <p class="xDom" id="xDom">x1</p>
+    <p class="popup" id="popup" >+1</p>
+    <img src="img/quest.png" class="openQuest" id="quest"></img>
+    
+
+
+
+
+
+    <div class="menu" id="Menu">
+        <button class="CloseMenu" onclick="menu()">X</button>
+        <div class="plus" onclick="plusOne()" onclick="pokaz()">
+          <div class="left">
+              <p><span>x1</span></p>
+              <p>+1 к множителю кликов</p>
+              <p id="priceX1">Стоимость: 10</p>       <!--//устанавливаеться цена для множителя  -->
+          </div>
+          <div class="right">
+            <img class="imgShop" src="img/2026-04-29_16-59-03-no-bg-preview (carve.photos).png">
+          </div>
+        </div>
+
+        <div class="plus" onclick="pet()">
+          <div class="left">
+              <p><span>петомец</span></p>
+              <p>+1 в секунду</p>
+              <p>Стоимость: 100</p>
+          </div>
+          <div class="right">
+            <img class="imgShop" src="img/2026-04-29_16-59-03-no-bg-preview (carve.photos).png">
+          </div>
+        </div>
+
+        <div class="plus" onclick="Home()">
+          <div class="left">
+              <p><span>Дом</span></p>
+              <p>+10 каждые 3 секунды </p>
+              <p>Стоимость: 1000</p>
+          </div>
+          <div class="right">
+            <img class="imgShop" src="img/2026-04-29_16-59-03-no-bg-preview (carve.photos).png">
+          </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
+<script>
+function NoMoney(name = "") {                                      //вывод ошибки "недостаточно денег для ****"
+  const errorDiv = document.getElementById('errorx1');
+  if (errorDiv) {
+      errorDiv.textContent = `Не хватает денег: ${name}`;
+      errorDiv.style.display = 'block';
+      setTimeout(function() {
+          errorDiv.style.display = 'none';
+      }, 3000);
+  }
+}
+function success(name = ""){                                      //Вывод успешной покупки
+    const yspeshnoDiv = document.getElementById('yspeshno');
+  if (yspeshnoDiv) {
+      yspeshnoDiv.textContent = `Успешная покупка: ${name}`;
+      yspeshnoDiv.style.display = 'block';
+      setTimeout(function() {
+          yspeshnoDiv.style.display = 'none';
+      }, 3000);
+  }
+}
+function menu() {                                                 //открыть-закрыть меню
+    let div = document.getElementById('Menu');
+    if (div.style.display === 'block') {
+      div.style.display = 'none';
+    } else {
+      div.style.display = 'block';
+    }
+}
+  var click = 1;                                              //клики
+  var mnoj = 1;                                               //множитель денег
+  var money = 0;                                              //деньги
+  var priceX1 = document.getElementById('priceX1');           // текст из тега html в переменную
+  var errorx1div = document.getElementById('errorx1');        // текст из тега html в переменную
+  var yspeshnoDiv = document.getElementById('yspeshno');      // текст из тега html в переменную
+  var petNumber = 0;                                         //Номер дома
+  var DomNumber = 0;                                        //номер петомца
+
+
+
+function plusMoney(){                                     //счет множителя
+  money+= click*mnoj;
+document.getElementById('money').innerHTML = money;
+}
+
+function plusOne(){                                       //множитель
+  if (money >= 10){                                       //устанавливаеться цена для множителя 
+    document.getElementById('money').innerHTML -= 10;     //-10 после покупки
+    money -= 10;                                          //-10 после покупки 
+    mnoj+=1;
+    console.log("Успешно!");
+    console.log("Множетелей стало",mnoj);
+    priceX1 = priceX1 * 0,1;
+    priceX1.innerHTML = priceX1;
+    priceX1.innerHTML = 1;
+    success('множитель');
+  } else {
+    console.log("нет денег:", money);
+    NoMoney('множитель');
+  }
+}
+
+function addMoneyPet(){                                  //петомец + деньги
+  money += 1;                                         //сколько получашь в секунду
+  document.getElementById('money').innerHTML = money;
+  console.log("петомец:+1");
+}
+
+function pet(){                                       //петомец
+  let intervalId = null;
+  let pet = document.getElementById('petMem');
+  let xPet = document.getElementById('xPet');
+  if (money >= 100){                                   //устанавливаеться цена для петомца
+    money -=100;                                       //-10 после покупки
+    document.getElementById('money').innerHTML -= 100; //-10 после покупки
+    intervalId = setInterval(addMoneyPet, 1000);      //каждую секунду + деньги     
+    success('петомец');
+    petNumber += 1;
+    document.getElementById('xPet').innerHTML = 'x' + petNumber;
+    pet.style.display = 'block';
+    xPet.style.display = 'block';
+  } 
+  else {
+    console.log("нет денег:", money);
+    NoMoney('петомец');
+  }
+}
+   
+function addMoneyHome(){                                  //Дом + деньги
+  money += 10;                                         //сколько получаешь в секунду
+  document.getElementById('money').innerHTML = money;
+  console.log("дом:+1");
+}
+
+function Home(){                                       //Дом
+  let intervalId = null;
+  let dom = document.getElementById('domMem');
+  let xDom = document.getElementById('xDom');
+  if (money >= 1000){                                   //устанавливаеться цена для дома
+    money -=1000;                                       //-10 после покупки
+    document.getElementById('money').innerHTML -= 1000; //-10 после покупки
+    intervalId = setInterval(addMoneyHome, 3000);     // каждые 3 секунды + деньги     
+    success('дом');
+    DomNumber += 1;
+    document.getElementById('xDom').innerHTML = 'x' + DomNumber;
+    dom.style.display = 'block';
+    xDom.style.display = 'block';
+  } 
+  else {
+    console.log("нет денег:", money);
+    NoMoney('Дом');
+  }
+}
+</script>

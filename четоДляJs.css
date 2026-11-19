@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.back{
+    width: auto;
+    font-size: 2vh;
+    margin: 0;
+    color: black;
+    background-color: red;
+    display: flex;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.numbers, .plus, .minus, .mnoj, .del, .point{
+    margin-top: 30px;
+    display: flex;
+    width: 5vw;
+    height: 6.5vh;
+    justify-content: center;
+    align-items: center;
+    background-color: chocolate;
+    font-size: 2.5em;
+    border: solid black;
+}
+.result, .clear{
+    border: solid black;
+    margin-top: 30px;
+    display: inline-flex;
+    width: 100%;
+    height: 7vh;
+    justify-content: center;
+    align-items: center;
+    background-color: chocolate;
+    font-size: 2.5em;
+}
+.calculate{
+background-color: rgb(105, 114, 114);
+    width: 30vw;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    border: solid rgb(38, 37, 37) 20px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+}
+.numbers:active, .result:active, .clear:active,
+ .plus:active, .minus:active, .mnoj:active,
+  .del:active, .point:active{
+    background-color: rgb(150, 74, 20);
+}
+body{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+.tabl{
+    height: 0vh;
+}
+tr{
+    height: 0vh;
+}
+td{
+    height: auto;
+    margin: 1vh;
+}
+.yr{
+    background-color: rgb(204, 210, 210);
+    width: 85%;
+    height: 10vh;
+    border: solid black 5px;
+    margin: 0 10% 0 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.yr td{
+    display: inline-flex;
+    min-width: 4vw;
+    height: 7vh;
+    background-color: rgb(174, 174, 174);
+}
+
+.more{
+    display: flex;
+    height: auto;
+    align-items: flex-end;
+    margin-bottom: 2em;
+}
+.yr button{
+        display: inline-flex;
+    min-width: 4vw;
+    height: 7vh;
+    background-color: rgb(174, 174, 174);
+        font-size: 4rem;
+            /* background-color: rgb(211, 214, 218); */
+
+
+}
+.resultat{
+    background-color: red;
+    width: auto;
+    height: auto;
+    padding: 0.3em;
+    font-size: 250%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+    justify-content: center;
+    max-width: 150px;
+    max-height: 5px;
+}
+/* .oneChislo, .twoChislo{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+} */

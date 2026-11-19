@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="chislo.css">
+    <title>Угадай число!!</title>
+</head>
+<body>
+    <a href="index.html">❌</a>
+    <div class="all">
+        <h1>❗угадай число от 0 до 10❗</h1>
+        <input type="text" id="ygadai">
+        <button onclick="randoms()">угадать</button>
+        <button onclick="update()">сгенерировать новое число</button>
+        <h2 id="otvet">Угадай!😁</h2>
+        <div class="stata">
+            <p>Генераций:<span id="obnovleno">0</span></p>
+            <p>Угадано:<span id="win">0</span></p>
+            <p>Попыток:<span id="popit">0</span></p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function update(){
+        random = Math.floor(Math.random()*11);
+        document.getElementById('otvet').textContent = 'Угадай!😁';
+        obnova +=1;
+        document.getElementById('obnovleno').textContent = obnova;
+    }
+
+    let random = 8;
+    let obnova = 0;
+    let winers = 0;
+    let popit = 0;
+
+    function randoms(){
+        let chislo = document.getElementById('ygadai').value;
+
+        if (random > chislo && chislo >=0){
+           document.getElementById('otvet').textContent = 'Слишком мало';
+           console.log('слишком мало');
+        }
+        else if(random < chislo && chislo <=10){
+           document.getElementById('otvet').textContent = 'Слишком много';
+           console.log('Слишком много');
+        }
+        else if(random == chislo){
+           document.getElementById('otvet').textContent = 'Правильно!! ответ:' + random;
+           console.log('правильно');
+           winers+=1;
+           document.getElementById('win').textContent = winers;
+           random = Math.floor(Math.random()*11);
+        }
+        else if(chislo <= -1 || chislo>=11){
+            document.getElementById('otvet').textContent = 'напиши от 0 до 10!'
+            console.log('введи от 0 до 10');
+        }
+        else{
+          document.getElementById('otvet').textContent = 'введи цифры!';
+          console.log('нужно вводить цифры!');
+        }
+        popit +=1;
+        document.getElementById('popit').textContent = popit;
+    }
+
+</script>

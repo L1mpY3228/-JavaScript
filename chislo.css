@@ -1,0 +1,92 @@
+body{
+
+    background-image: radial-gradient(circle, rgba(89, 252, 200, 1) 0%, rgba(37, 75, 69, 1) 93%);
+    display: flex;
+    justify-content: center;
+}
+.all {
+    background-color: rgb(43, 129, 175);
+    border-radius: 10px;
+    display: flex;
+    height: 450px;
+    width: 450px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+    box-shadow: 0px 0px 20px 7px #555c4d9e;
+}
+button {
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    border: solid 2px #037800;
+    margin: 5px 0 0px 0;
+    background-color: #57a355;
+}
+button:hover{
+     border: solid 2px #037800;
+    background-color: #439141;   
+}
+input {
+    width: 50px;
+    height: 30px;
+    margin: 0 0 13px 0;
+    background-color: #235646;
+    color: white;
+    font-size: x-large;
+    text-align: center;
+}
+h1{
+    width: auto;
+}
+h2{
+    width: auto;
+}
+a {
+    width: 25px;
+    height: 30px;
+    margin-top: 40px;
+    z-index: 1;
+    font-size: 30px;
+    text-decoration: none;
+}
+a:hover{
+animation: plus 0.5s linear;
+}
+@keyframes plus{
+     0%{
+    font-size: 30px;
+
+    }
+    20%{
+    font-size: 35px;
+      
+    }
+    35%{
+    font-size: 40px;
+
+    }
+     50%{
+    font-size: 45px;
+
+     }
+     70%{
+    font-size: 40px;
+
+     }
+     85%{
+    font-size: 35px;
+
+     }
+      100%{
+    font-size: 30px;
+
+     }
+}
+.stata {
+    display: inline-flex;
+    width: 80%;
+    justify-content: space-evenly;
+}
